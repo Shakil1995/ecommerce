@@ -58,4 +58,9 @@ return redirect()->back()->with('error','Invalid email Or password');
 }
 
     }
+
+    // admin login Form
+    public function adminLogin(){
+        return view('auth.admin_login');
+    }
 }
