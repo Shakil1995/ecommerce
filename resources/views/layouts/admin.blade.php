@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="{{asset('public/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('public/admin/dist/css/adminlte.min.css')}}">
+
+  <link rel="stylesheet" href="{{asset('public/admin/plugins/toastr/toastr.css')}}">
+  <link rel="stylesheet" href="{{asset('public/admin/plugins/sweetalert2/sweetalert2.css')}}">
 </head>
 <body >
 
@@ -45,8 +48,7 @@
 
   
   @endguest
-
-
+ 
 
 
 @yield('admin_contant')
@@ -93,5 +95,89 @@
 <script src="{{asset('public/admin/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('public/admin/dist/js/pages/dashboard2.js')}}"></script>
+
+<script  src="{{asset('public/admin/plugins/toastr/toastr.min.js')}}"></script>
+<script  src="{{asset('public/admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+
+
+
+
+
+
+
+<script>
+  @if(Session::has('messege'))
+       var type="{{Session::get('alert-type','info')}}"
+       switch(type){
+           case 'info':
+                toastr.info("{{ Session::get('messege') }}");
+                break;
+           case 'success':
+               toastr.success("{{ Session::get('messege') }}");
+               break;
+           case 'warning':
+              toastr.warning("{{ Session::get('messege') }}");
+               break;
+           case 'error':
+               toastr.error("{{ Session::get('messege') }}");
+               break;
+       }
+     @endif
+</script>
+
+ <script>
+         $(document).on("click", "#delete", function(e){
+             e.preventDefault();
+              var link = $(this).attr("href");
+              swal({
+               title: "Are you sure?",
+               text: "You will not be able to recover this imaginary file!",
+               type: "warning",
+               showCancelButton: true,
+               confirmButtonClass: "btn-danger",
+               confirmButtonText: "Yes, delete it!",
+               cancelButtonText: "No, cancel!",
+             },
+             function(isConfirm) {
+               if (isConfirm) {
+                 swal("Deleted!", "Your imaginary file has been deleted.", "success");
+                 window.location.href = link;
+               } else {
+                 swal("Cancelled", "Your imaginary file is safe :)", "error");
+               }
+             });
+            });
+    </script>
+{{-- befor logout showing alert messeage --}}
+<script>
+  $(document).on("click", "#logout", function(e){
+      e.preventDefault();
+       var link = $(this).attr("href");
+       swal({
+        title: "Are you want to logout?",
+        text: "",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonClass: "btn-danger",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+      },
+      function(isConfirm) {
+        if (isConfirm) {
+          // swal("Deleted!", "Your imaginary file has been deleted.", "success");
+          window.location.href = link;
+        } else {
+          swal("not logout");
+        }
+      });
+     });
+</script>
+
+
+
+
+
+
+
 </body>
 </html>

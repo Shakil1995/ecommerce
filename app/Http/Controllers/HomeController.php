@@ -26,8 +26,5 @@ class HomeController extends Controller
         return view('home');
     }
 // admin After Login
-    public function admin()
-    {
-        return view('admin.home');
-    }
+  
 }
