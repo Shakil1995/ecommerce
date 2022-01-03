@@ -3,6 +3,21 @@
      composer create-project laravel/laravel ecommerce
 
 
+==========git Hub project Run local ============
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+
+php artisan optimize  
+php artisan cache:clear
+php artisan route:clear
+php artisan config:clear
+php artisan view:clear
+
+php artisan make:migration courses_table
+php artisan make:Model CoursesModel
+php artisan make:Controller CoursesController
 
 
 
