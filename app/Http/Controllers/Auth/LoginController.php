@@ -49,7 +49,9 @@ class LoginController extends Controller
 
 if(auth()->attempt(array('email'=>$request->email,'password'=>$request->password))){
  if(auth()->user()->is_admin==1){
-     return redirect()->route('admin.home');
+    $notification=array('messege' => 'You are logged In ','alert-type' => 'success');
+    // return redirect()->route('admin.login')->with($notification);
+     return redirect()->route('admin.home')->with($notification);
  }else{
      return redirect()->route('home');
  }

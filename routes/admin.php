@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('add',function(){
@@ -15,3 +16,13 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
     Route::get('/admin/home', 'AdminController@admin')->name('admin.home');
     Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
 });
+
+	//category routes
+    // Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
+	Route::group(['prefix'=>'category'], function(){
+		Route::get('/',[CategoryController::class, 'index'])->name('category.index');
+	// 	// Route::post('/store','CategoryController@store')->name('category.store');
+	// 	// Route::get('/delete/{id}','CategoryController@destroy')->name('category.delete');
+	// 	// Route::get('/edit/{id}','CategoryController@edit');
+	// 	// Route::post('/update','CategoryController@update')->name('category.update');
+ });
