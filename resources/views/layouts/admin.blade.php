@@ -103,7 +103,7 @@
 <script src="{{asset('public/admin/dist/js/pages/dashboard2.js')}}"></script>
 
 <script  src="{{asset('public/admin/plugins/toastr/toastr.min.js')}}"></script>
-<script  src="{{asset('public/admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+{{-- <script  src="{{asset('public/admin/plugins/sweetalert2/sweetalert2.min.js')}}"></script> --}}
 <!-- DataTables  & Plugins -->
 <script src="{{asset('public/admin/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('public/admin/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
@@ -143,8 +143,44 @@
        }
      @endif
 </script>
+
+
+
+
+
+<script type="text/javascript" src="{{ asset('public/admin/plugins/toastr/toastr.min.js') }}"></script>
+<script src="{{asset('public/admin/plugins/sweetalert/sweetalert.min.js') }}"></script>
+
+    <script>  
+         $(document).on("click", "#delete", function(e){
+             e.preventDefault();
+             var link = $(this).attr("href");
+                swal({
+                  title: "Are you Want to delete?",
+                  text: "Once Delete, This will be Permanently Delete!",
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+                })
+                .then((willDelete) => {
+                  if (willDelete) {
+                       window.location.href = link;
+                  } else {
+                    swal("Safe Data!");
+                  }
+                });
+            });
+    </script>
+
+
+
+
+
+
+
+
 {{-- befor Delete showing alert messeage --}}
- <script>
+ {{-- <script>
    
          $(document).on("click", "#delete", function(e){
              e.preventDefault();
@@ -167,7 +203,7 @@
                }
              });
             });
-    </script>
+    </script> --}}
 {{-- befor logout showing alert messeage --}}
 <script>
   $(document).on("click", "#logout", function(e){
