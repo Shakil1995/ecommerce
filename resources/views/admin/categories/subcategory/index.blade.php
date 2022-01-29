@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Category  </h1>
+            <h1 class="m-0">Sub Category  </h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -25,7 +25,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">All Category List</h3>
+                  <h3 class="card-title">All Sub-Category List</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -33,8 +33,9 @@
                       <thead>
                       <tr>
                         <th>SL</th>
-                        <th>Category Name</th>
-                        <th>Category Icon</th>
+                        <th>Category name</th>
+                        <th>Sub-Category Name</th>
+                        <th>Sub-Category Icon</th>                  
                         <th>Home Page Show</th>
                         <th>Action</th>                     
                       </tr>
@@ -43,8 +44,10 @@
                           @foreach ( $data as $key=>$row ) 
                       <tr>
                         <td>{{$key+1}}</td>
-                        <td>{{$row->category_name}} </td>
-                        <td><img src="{{ asset($row->category_icon)}}" height="40" width="70"></td>
+                        <td>{{$row->category_id }}</td>
+                        <td>{{$row->subcategory_name}} </td>
+                        <td><img src="{{ asset($row->subcategory_icon)}}" height="40" width="70"></td>
+
                         <td>
                           @if($row->home_page==1)
                           <span class="badge badge-success">Yes</span>
@@ -55,7 +58,7 @@
                         <td> 
                             <a href="#" class="btn btn-info btn-sm edit" data-toggle="modal" data-target="#editModal{{ $row->id }}"><i class="fas fa-edit"></i></a>
                             <a href="{{ route('category.delete',$row->id) }}" class="btn btn-danger btn-sm" id="delete"><i class="fas fa-trash"></i></a>
-                          
+                                                    
                             <div class="modal fade" id="editModal{{ $row->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                               <div class="modal-dialog" role="document">
                                 <div class="modal-content">
@@ -137,12 +140,12 @@
 
 
 
-<!-- Category Insert Modal -->
+<!--  Sub Category Insert Modal -->
 <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">New Category Insert</h5>
+          <h5 class="modal-title" id="exampleModalLabel">New Sub-Category Insert</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -151,13 +154,19 @@
          <form action="{{route('category.store')}}" method="Post" enctype="multipart/form-data">
             @csrf
           <div class="modal-body">
+            <div class="form-group">
+              <label for="category_name">Category Name</label>
+              <select class="form-control" name="" id="">
+              </select>
+
+            </div>
               <div class="form-group">
-                <label for="category_name">Category Name</label>
+                <label for="category_name">Sub Category Name</label>
                 <input type="text" class="form-control" id="category_name" name="category_name" required="">
                 <small id="emailHelp" class="form-text text-muted">This is your main category</small>
               </div> 
               <div class="form-group">
-                <label for="category_name">Category Icon</label>
+                <label for="category_name">Sub Category Icon</label>
                 <input type="file" class="dropify" id="icon" name="category_icon" required="">
               </div>  
               <div class="form-group">

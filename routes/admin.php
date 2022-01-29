@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\SubcategoryController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('add',function(){
@@ -23,5 +24,14 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'is_admin'
 	  Route::get('/',[CategoryController::class, 'index'])->name('category.index');
 	  Route::post('/store',[CategoryController::class, 'store'])->name('category.store');
 	  Route::get('/delete/{id}',[CategoryController::class, 'destroy'])->name('category.delete');
+	  Route::post('/update/{id}',[CategoryController::class, 'update'])->name('category.update');
 
  });
+
+ Route::group(['prefix'=>'subcategory'], function(){
+	Route::get('/',[SubcategoryController::class, 'index'])->name('subcategory.index');
+	// Route::post('/store',[CategoryController::class, 'store'])->name('category.store');
+	// Route::get('/delete/{id}',[CategoryController::class, 'destroy'])->name('category.delete');
+	// Route::post('/update/{id}',[CategoryController::class, 'update'])->name('category.update');
+
+});
